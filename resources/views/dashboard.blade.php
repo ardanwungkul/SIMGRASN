@@ -7,10 +7,10 @@
                     <i class="fa-solid fa-calendar text-widow-700"></i>
                 </div>
                 <div>
+                    <p class="text-lg text-gray-200 font-bold">Transaksi Default</p>
                     <p class="text-xl text-white font-bold leading-none">
                         {{ \App\Helpers\FormatHelper::formatThnBln(session('default')) }}
                     </p>
-                    <p class="text-sm text-gray-200 font-bold">Bulan Transaksi Default</p>
                 </div>
             </div>
         </div>
@@ -21,10 +21,10 @@
                     <i class="fa-solid fa-clock text-bay-700"></i>
                 </div>
                 <div>
+                    <p class="text-lg text-gray-200 font-bold">Transaksi Gaji</p>
                     <p class="text-xl text-white font-bold leading-none">
                         {{ \App\Helpers\FormatHelper::formatThnBln(session('thnbln')) }}
                     </p>
-                    <p class="text-sm text-gray-200 font-bold">Bulan Transaksi Aktif</p>
                 </div>
             </div>
         </div>
@@ -35,9 +35,9 @@
                     <i class="fa-solid fa-arrow-up text-pumpkin-700"></i>
                 </div>
                 <div>
+                    <p class="text-lg text-gray-200 font-bold">Status Rapel</p>
                     <p class="text-xl text-white font-bold leading-none">
                         {{ $config->tgl_rapel !== '0000-00-00 00:00:00' ? 'Aktif' : 'Tidak Aktif' }}</p>
-                    <p class="text-sm text-gray-200 font-bold">Status Rapel</p>
                 </div>
             </div>
         </div>
@@ -48,9 +48,9 @@
                     <i class="fa-solid fa-coins text-teal-700"></i>
                 </div>
                 <div>
+                    <p class="text-lg text-gray-200 font-bold">Status TPP</p>
                     <p class="text-xl text-white font-bold leading-none">
                         {{ $config->tgl_tpp !== '0000-00-00 00:00:00' ? 'Aktif' : 'Tidak Aktif' }}</p>
-                    <p class="text-sm text-gray-200 font-bold">Status TPP</p>
                 </div>
             </div>
         </div>
