@@ -92,6 +92,7 @@
     </div>
     @if (env('APP_DEPLOY') == true)
         <script src="{{ asset('build/assets/app.js') }}"></script>
+        <script src="{{ asset('build/assets/dotLottie.js') }}"></script>
     @endif
 
 

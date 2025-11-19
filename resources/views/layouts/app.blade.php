@@ -14,7 +14,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.css') }}">
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @if (env('APP_DEPLOY') == true)
+        <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/assets/app2.css') }}">
+    @else
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endif
 </head>
 
 <body class="font-sans antialiased">
@@ -240,6 +245,9 @@
             </div>
         </main>
     </div>
+    @if (env('APP_DEPLOY') == true)
+        <script src="{{ asset('build/assets/app.js') }}"></script>
+    @endif
 </body>
 <script src="{{ asset('assets/js/font-awesome.min.js') }}"></script>
 
