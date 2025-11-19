@@ -74,7 +74,7 @@ class ApiController extends Controller
     {
         $data = Gaji::where('thnbln', session('thnbln'))
             ->where('kdskpd', $request->kdskpd)
-            ->with('pegawai')
+            ->with('pegawai.keluarga', 'pegawai.keluarga_anak')
             ->get();
         return response()->json($data);
     }

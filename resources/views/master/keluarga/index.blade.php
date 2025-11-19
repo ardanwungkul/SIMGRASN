@@ -145,6 +145,40 @@
 
                     if (response.length > 0) {
                         $.each(response, function(index, data) {
+
+                            let namaAnakHtml = '';
+                            let tanggalLahirAnakHtml = '';
+                            let hubunganAnakHtml = '';
+                            let pendidikanAnakHtml = '';
+                            let tunjanganAnakHtml = '';
+                            if (data.pegawai.keluarga_anak && data.pegawai
+                                .keluarga_anak.length > 0) {
+                                namaAnakHtml = data.pegawai.keluarga_anak
+                                    .map(item =>
+                                        `<p class="text-center whitespace-nowrap">${item.nama}</p>`
+                                    )
+                                    .join('');
+                                tanggalLahirAnakHtml = data.pegawai.keluarga_anak
+                                    .map(item =>
+                                        `<p class="text-center whitespace-nowrap">${item.tgllhr}</p>`
+                                    )
+                                    .join('');
+                                hubunganAnakHtml = data.pegawai.keluarga_anak
+                                    .map(item =>
+                                        `<p class="text-center whitespace-nowrap">${item.hubung}</p>`
+                                    )
+                                    .join('');
+                                pendidikanAnakHtml = data.pegawai.keluarga_anak
+                                    .map(item =>
+                                        `<p class="text-center whitespace-nowrap">${item.pendidikan}</p>`
+                                    )
+                                    .join('');
+                                tunjanganAnakHtml = data.pegawai.keluarga_anak
+                                    .map(item =>
+                                        `<p class="text-center whitespace-nowrap">${item.tunj == 1 ? 'DAPAT' : 'TIDAK'}</p>`
+                                    )
+                                    .join('');
+                            }
                             table.row.add([
                                 index + 1,
                                 `<div data-id="${data.pegawai.id}" class="double-click-button">
@@ -156,33 +190,32 @@
                                     <p class="text-center whitespace-nowrap">${data.status}</p>
                                 </div>`,
                                 `<div data-id="${data.pegawai.id}" class="double-click-button">
-                                    <p class="text-center">${data.kdskpd}</p>
-                                    <p class="text-center whitespace-nowrap">${data.status}</p>
+                                    <p class="text-center whitespace-nowrap">${data.pegawai.keluarga ? data.pegawai.keluarga.nmistri : ''}</p>
+                                    <p class="text-center whitespace-nowrap">${data.pegawai.keluarga ? data.pegawai.keluarga.nipistri : ''}</p>
+                                    <p class="text-center whitespace-nowrap">${data.pegawai.keluarga ? data.pegawai.keluarga.pekerjaan : ''}</p>
+                                    <p class="text-center whitespace-nowrap">${data.pegawai.keluarga ? data.pegawai.keluarga.ket : ''}</p>
                                 </div>`,
                                 `<div data-id="${data.pegawai.id}" class="double-click-button">
-                                    <p class="text-center">${data.kawin}</p>
-                                    <p class="text-center whitespace-nowrap">${data.status}</p>
+                                    ${namaAnakHtml}
                                 </div>`,
                                 `<div data-id="${data.pegawai.id}" class="double-click-button">
-                                    <p class="text-center">${data.kawin}</p>
-                                    <p class="text-center whitespace-nowrap">${data.status}</p>
+                                    ${tanggalLahirAnakHtml}
                                 </div>`,
                                 `<div data-id="${data.pegawai.id}" class="double-click-button">
-                                    <p class="text-center">${data.kawin}</p>
-                                    <p class="text-center whitespace-nowrap">${data.status}</p>
+                                    ${hubunganAnakHtml}
                                 </div>`,
                                 `<div data-id="${data.pegawai.id}" class="double-click-button">
-                                    <p class="text-center">${data.kawin}</p>
-                                    <p class="text-center whitespace-nowrap">${data.status}</p>
+                                    ${pendidikanAnakHtml}
                                 </div>`,
                                 `<div data-id="${data.pegawai.id}" class="double-click-button">
-                                    <p class="text-center">${data.kawin}</p>
-                                    <p class="text-center whitespace-nowrap">${data.status}</p>
+                                    ${tunjanganAnakHtml}
                                 </div>`,
                                 `<div data-id="${data.pegawai.id}" class="double-click-button">
-                                    <p class="text-center">${data.kawin}</p>
-                                    <p class="text-center whitespace-nowrap">${data.status}</p>
-                                </div>`,
+                                    <a href="{{ route('keluarga.create', ['id' => '___id___']) }}"
+                                        class="bg-blue-100 border border-blue-700 rounded-lg text-blue-700 px-3 py-1">
+                                            <i class="fa-solid fa-pen"></i>
+                                    </a>
+                                </div>`.replace('___id___', data.pegawai.id),
                             ]).draw(false);
                         });
                     }
@@ -197,7 +230,7 @@
             const id = $(this).data('id');
             const url = `{{ route('keluarga.create', ['id' => '__ID__']) }}`.replace('__ID__', id);
 
-            window.open(url, '_blank');
+            window.location = url;
         });
     });
 </script>

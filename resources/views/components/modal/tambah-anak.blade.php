@@ -33,6 +33,8 @@
                                 class="w-full rounded-lg text-xs shadow-lg border border-gray-300 select2">
                                 <option value="" selected disabled>Pilih Hubungan</option>
                                 <option value="Anak Kandung">Anak Kandung</option>
+                                <option value="Anak Tiri">Anak Tiri</option>
+                                <option value="Anak Angkat">Anak Angkat</option>
                             </select>
                         </div>
                         <div class="flex flex-col gap-1">

@@ -22,7 +22,6 @@ class Gaji extends Model
     {
         return $this->belongsTo(RefStruktural::class, 'kdstruk', 'kdstruk');
     }
-
     public function fungsional()
     {
         return $this->belongsTo(RefFungsional::class, 'kdfung', 'kdfung');

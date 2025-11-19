@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('data-keluarga-pegawai', [KeluargaController::class, 'index'])->name('keluarga.index');
     Route::get('data-keluarga-pegawai/{id}/create', [KeluargaController::class, 'create'])->name('keluarga.create');
+    Route::post('data-keluarga-pegawai/{id}/istri-suami', [KeluargaController::class, 'istriSuami'])->name('keluarga.istri-suami');
+    Route::post('data-keluarga-pegawai/{id}/anak', [KeluargaController::class, 'anak'])->name('keluarga.anak');
 
     Route::get('/data-pokok-pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
     Route::post('/data-pokok-pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');
