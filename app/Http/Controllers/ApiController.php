@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\FormatHelper;
+use App\Models\Gaji;
 use App\Models\RefFungsional;
 use App\Models\RefPangkat;
 use App\Models\RefPokok;
+use App\Models\RefSkpd;
 use App\Models\RefStruktural;
 use App\Models\TableKelompokFungsional;
 use App\Models\TableSertifikasi;
@@ -57,6 +59,23 @@ class ApiController extends Controller
                 $q->where('kdgol', $request->kode_golongan)
                     ->orWhere('kdgol', 'NON');
             })->get();
+        return response()->json($data);
+    }
+    public function getUnitKerjaBySkpd(Request $request)
+    {
+        $data = RefSkpd::select('kdskpd', 'uraian', 'tahun')
+            ->whereRaw('LEFT(kdskpd, ?) = ?', [strlen($request->kdskpd), $request->kdskpd])
+            ->where('tahun', FormatHelper::getTahun(session('thnbln')))
+            ->whereRaw('CHAR_LENGTH(kdskpd) > 7')->get();
+
+        return response()->json($data);
+    }
+    public function getPegawaiByUnitKerja(Request $request)
+    {
+        $data = Gaji::where('thnbln', session('thnbln'))
+            ->where('kdskpd', $request->kdskpd)
+            ->with('pegawai')
+            ->get();
         return response()->json($data);
     }
 }

@@ -1,7 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        Tambah Pegawai
-    </x-slot>
     <div class="fixed top-0 right-0 w-full h-screen bg-black/20 backdrop-blur-sm z-50 hidden" id="loadingIndicator">
         <div class="banter-loader">
             <div class="banter-loader__box"></div>

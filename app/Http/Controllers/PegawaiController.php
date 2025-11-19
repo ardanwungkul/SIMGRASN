@@ -151,7 +151,7 @@ class PegawaiController extends Controller
     {
         $agama = TableAgama::all();
         $pendidikan = TablePendidikan::all();
-        $skpd = RefSkpd::select('kdskpd', 'uraian')->whereNotNull('kdskpd')
+        $skpd = RefSkpd::select('kdskpd', 'uraian')->where('tahun', session('tahun'))->whereNotNull('kdskpd')
             ->whereRaw('CHAR_LENGTH(kdskpd) > 7')
             ->get();
         $asal_pegawai = TableAsalPegawai::all();

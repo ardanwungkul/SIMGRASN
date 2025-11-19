@@ -33,7 +33,7 @@
                 [
                     'icon' => 'fa-family',
                     'label' => 'Data Keluarga Pegawai',
-                    'route' => 'dashboard',
+                    'route' => 'keluarga.index',
                 ],
                 [
                     'icon' => 'fa-credit-card',
@@ -249,7 +249,6 @@
             ],
         ],
     ];
-    // $groupColor = ['text-bay-300/80', 'text-green-300/80', 'text-orange-300/80', 'text-purple-300/80'];
     $groupColor = [
         'text-bay-300/80',
         'text-green-300/80',

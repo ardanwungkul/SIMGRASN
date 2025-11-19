@@ -1,5 +1,6 @@
 import "./bootstrap";
-import { initFlowbite } from "flowbite";
+// import { initFlowbite } from "flowbite";
+import "flowbite";
 import Alpine from "alpinejs";
 import DataTable from "datatables.net-dt";
 import "datatables.net-dt/css/dataTables.dataTables.min.css";
@@ -14,4 +15,4 @@ window.Alpine = Alpine;
 
 Alpine.start();
 select2();
-initFlowbite();
+// initFlowbite();

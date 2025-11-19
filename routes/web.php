@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GolonganController;
+use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PerubahanGajiController;
 use App\Http\Controllers\ProfileController;
@@ -29,7 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
+    Route::get('data-keluarga-pegawai', [KeluargaController::class, 'index'])->name('keluarga.index');
+    Route::get('data-keluarga-pegawai/{id}/create', [KeluargaController::class, 'create'])->name('keluarga.create');
 
     Route::get('/data-pokok-pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
     Route::post('/data-pokok-pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');
@@ -50,6 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::get('get-struktural', [ApiController::class, 'getStruktural'])->name('get.struktural');
     Route::get('get-sertifikasi', [ApiController::class, 'getSertifikasi'])->name('get.sertifikasi');
     Route::get('get-jabatan-fungsional-by-kelompok-fungsional', [ApiController::class, 'getJabatanFungsionalByKelompokFungsional'])->name('get.jabatan-fungsional.by.kelompok-fungsional');
+    Route::get('get-unit-kerja-by-skpd', [ApiController::class, 'getUnitKerjaBySkpd'])->name('get.unit-kerja.by.skpd');
+    Route::get('get-pegawai-by-unit-kerja', [ApiController::class, 'getPegawaiByUnitKerja'])->name('get.pegawai.by.unit-kerja');
 });
 
 
