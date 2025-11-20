@@ -183,22 +183,22 @@
                 [
                     'icon' => 'fa-money-bill',
                     'label' => 'Referensi Gaji Pokok',
-                    'route' => 'dashboard',
+                    'route' => 'gaji-pokok.index',
                 ],
                 [
                     'icon' => 'fa-sitemap',
                     'label' => 'Referensi Struktural',
-                    'route' => 'dashboard',
+                    'route' => 'struktural.index',
                 ],
                 [
                     'icon' => 'fa-briefcase',
                     'label' => 'Referensi Fungsional',
-                    'route' => 'dashboard',
+                    'route' => 'fungsional.index',
                 ],
                 [
                     'icon' => 'fa-building',
                     'label' => 'Referensi OPD/SKPD',
-                    'route' => 'dashboard',
+                    'route' => 'skpd.index',
                 ],
                 [
                     'icon' => 'fa-sliders-h',

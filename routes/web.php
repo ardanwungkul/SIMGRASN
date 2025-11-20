@@ -2,11 +2,15 @@
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FungsionalController;
 use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PerubahanGajiController;
+use App\Http\Controllers\PokokController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SkpdController;
+use App\Http\Controllers\StrukturalController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,7 +48,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/data-perubahan-gaji', [PerubahanGajiController::class, 'store'])->name('perubahan-gaji.store');
 
     Route::resource('user', UserController::class);
-    Route::resource('golongan', GolonganController::class);
+    Route::resource('referensi/golongan', GolonganController::class);
+    Route::resource('referensi/gaji-pokok', PokokController::class);
+    Route::resource('referensi/struktural', StrukturalController::class);
+    Route::resource('referensi/fungsional', FungsionalController::class);
+    Route::resource('referensi/skpd', SkpdController::class);
 
     Route::get('search-pegawai-by-tahun-bulan', [PegawaiController::class, 'searchPegawaiByTahunBulan'])->name('search.pegawai.by.tahun-bulan');
     Route::get('get-pegawai-bulan-lalu-bulan-ini', [PegawaiController::class, 'getPegawaiBulanLaluBulanIni'])->name('get.pegawai.bulan-lalu.bulan-ini');
