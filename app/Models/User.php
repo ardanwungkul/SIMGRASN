@@ -49,6 +49,22 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function getGrupUraianAttribute()
+    {
+        if ($this->grup == 1) {
+            return 'BKAD';
+        } else if ($this->grup == 2) {
+            return 'BKPSDM';
+        } else if ($this->grup == 3) {
+            return 'DISDIK';
+        } else if ($this->grup == 4) {
+            return 'SKLH';
+        } else if ($this->grup == 5) {
+            return 'DINKES';
+        } else if ($this->grup == 6) {
+            return 'PKM';
+        }
+    }
     public function getRoleAttribute()
     {
         if ($this->level == 1) {

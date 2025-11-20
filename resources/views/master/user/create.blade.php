@@ -36,12 +36,37 @@
                     <div class="flex flex-col gap-1">
                         <label for="level">Role/Level</label>
                         <select name="level" id="level"
-                            class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md w-full" required>
+                            class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md w-full select2"
+                            required>
                             <option value="" selected disabled> Pilih Role/Level</option>
-                            <option value="1">Admin</option>
-                            <option value="2">BKPSDN</option>
-                            <option value="3">SKPD</option>
-                            <option value="4">Unit</option>
+                            <option value="1">User</option>
+                            <option value="2">Supervisor</option>
+                            <option value="3">Administrator</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label for="grup">Grup</label>
+                        <select name="grup" id="grup"
+                            class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md w-full select2"
+                            required>
+                            <option value="" selected disabled> Pilih Grup</option>
+                            <option value="1">BKAD</option>
+                            <option value="2">BKPSDM</option>
+                            <option value="3">DISDIK</option>
+                            <option value="4">SKLH</option>
+                            <option value="5">DINKES</option>
+                            <option value="6">PKM</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label for="skpd">SKPD</label>
+                        <select name="skpd" id="skpd"
+                            class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md w-full select2"
+                            required>
+                            <option value="" selected disabled> Pilih SKPD</option>
+                            @foreach ($skpd as $item)
+                                <option value="{{ $item->kdskpd }}">{{ $item->kdskpd }} - {{ $item->uraian }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="flex md:justify-end justify-between items-center md:gap-4 gap-1">
@@ -72,3 +97,11 @@
         </x-slot>
     </x-container>
 </x-app-layout>
+<script type="module">
+    $(document).ready(function() {
+        $('.select2').select2({
+            dropdownCssClass: "text-xs md:text-sm",
+            selectionCssClass: 'text-xs md:text-sm',
+        });
+    })
+</script>

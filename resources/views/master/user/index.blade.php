@@ -26,6 +26,8 @@
                                     <td class="text-xs">Username</td>
                                     <td class="text-xs">Terakhir Login</td>
                                     <td class="text-xs">Level</td>
+                                    <td class="text-xs">Grup</td>
+                                    <td class="text-xs">SKPD</td>
                                     <td class="text-xs w-32"></td>
                                 </tr>
                             </thead>
@@ -42,11 +44,17 @@
                                             <p>{{ $item->username }}</p>
                                         </td>
                                         <td>
-                                            <p>{{ \Carbon\Carbon::parse($item->terakhir_login)->translatedFormat('d F Y H:i') }}
+                                            <p>{{ $item->terakhir_login ? \Carbon\Carbon::parse($item->terakhir_login)->translatedFormat('d F Y H:i') : '' }}
                                             </p>
                                         </td>
                                         <td>
                                             <p>{{ $item->role }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ $item->grup_uraian }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ $item->skpd }}</p>
                                         </td>
                                         <td>
                                             <div class="flex justify-center items-center gap-3">

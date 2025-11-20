@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RefSkpd;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,11 @@ class UserController extends Controller
     }
     public function create()
     {
-        return view('master.user.create');
+        $skpd = RefSkpd::select('kdskpd', 'uraian', 'tahun')
+            ->where('tahun', session('tahun'))
+            ->whereNotNull('kdskpd')
+            ->whereRaw('CHAR_LENGTH(kdskpd) > 7')->get();
+        return view('master.user.create', compact('skpd'));
     }
     public function edit(User $user)
     {
@@ -30,6 +35,8 @@ class UserController extends Controller
                 'email' => 'required|unique:user|max:30',
                 'password' => 'required',
                 'level' => 'required',
+                'grup' => 'required',
+                'skpd' => 'required',
             ],
             [
                 'name.max' => 'Nama User Tidak Boleh Lebih dari 30 Karakter',
@@ -44,6 +51,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->level = $request->level;
+        $user->grup = $request->grup;
         $user->skpd = $request->skpd ?? '';
         $user->save();
         return redirect()->route('user.index')->with(['success' => 'Berhasil Menambahkan User']);
