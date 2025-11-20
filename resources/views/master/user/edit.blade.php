@@ -34,11 +34,11 @@
                             required>
                             <option value="" selected disabled> Pilih Grup</option>
                             <option {{ $user->grup == 1 ? 'selected' : '' }} value="1">BKAD</option>
-                            <option {{ $user->grup == 1 ? 'selected' : '' }} value="2">BKPSDM</option>
-                            <option {{ $user->grup == 1 ? 'selected' : '' }} value="3">DISDIK</option>
-                            <option {{ $user->grup == 1 ? 'selected' : '' }} value="4">SKLH</option>
-                            <option {{ $user->grup == 1 ? 'selected' : '' }} value="5">DINKES</option>
-                            <option {{ $user->grup == 1 ? 'selected' : '' }} value="6">PKM</option>
+                            <option {{ $user->grup == 2 ? 'selected' : '' }} value="2">BKPSDM</option>
+                            <option {{ $user->grup == 3 ? 'selected' : '' }} value="3">DISDIK</option>
+                            <option {{ $user->grup == 4 ? 'selected' : '' }} value="4">SKLH</option>
+                            <option {{ $user->grup == 5 ? 'selected' : '' }} value="5">DINKES</option>
+                            <option {{ $user->grup == 6 ? 'selected' : '' }} value="6">PKM</option>
                         </select>
                     </div>
                     <div class="flex flex-col gap-1">
