@@ -115,6 +115,7 @@ class PegawaiController extends Controller
             ]
         ]);
     }
+    // ORDER kdgol DESC, masa DESC, rp_bersih DESC, nama ASC
     public function index(Request $request)
     {
         $keyword = $request->input('search');
@@ -143,6 +144,13 @@ class PegawaiController extends Controller
 
 
 
+        $query->orderBy('kdgol', 'DESC')
+            ->orderBy('masa', 'DESC')
+            ->orderBy('rp_bersih', 'DESC')
+            ->orderBy(
+                DB::raw('(SELECT nama FROM gajimain WHERE gajimain.id = gajibulan.id)'),
+                'ASC'
+            );
         $data = $query->paginate(20)->withQueryString();
 
         return view('master.pegawai.index', compact('data'));

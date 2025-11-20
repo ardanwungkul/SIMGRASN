@@ -11,6 +11,7 @@ use App\Models\TableKawin;
 use App\Models\TablePendidikan;
 use App\Models\TableSertifikasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PerubahanGajiController extends Controller
 {
@@ -31,6 +32,13 @@ class PerubahanGajiController extends Controller
             })
                 ->orWhere('kdgol', 'like', "%{$keyword}%");
         }
+        $query->orderBy('kdgol', 'DESC')
+            ->orderBy('masa', 'DESC')
+            ->orderBy('rp_bersih', 'DESC')
+            ->orderBy(
+                DB::raw('(SELECT nama FROM gajimain WHERE gajimain.id = gajibulan.id)'),
+                'ASC'
+            );
 
         $data = $query->paginate(20)->withQueryString();
 
