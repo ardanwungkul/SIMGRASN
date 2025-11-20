@@ -9,4 +9,7 @@ class RefSkpd extends Model
 {
     use HasFactory;
     protected $table = 'ref_skpd';
+    protected $primaryKey = 'kdskpd';
+    public $incrementing = false;
+    protected $keyType = 'string';
 }

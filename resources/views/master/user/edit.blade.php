@@ -28,22 +28,32 @@
                             autocomplete="new-email" value="{{ $user->email }}" placeholder="Masukkan Email" required>
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password"
-                            class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md"
-                            autocomplete="new-password" value="{{ old('password') }}" placeholder="Password">
-                    </div>
-                    {{-- <div class="flex flex-col gap-1">
-                        <label for="level">Role/Level</label>
-                        <select name="level" id="level"
-                            class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md w-full" required>
-                            <option value="" selected disabled> Pilih Role/Level</option>
-                            <option value="1">Admin</option>
-                            <option value="2">BKPSDN</option>
-                            <option value="3">SKPD</option>
-                            <option value="4">Unit</option>
+                        <label for="grup">Grup</label>
+                        <select name="grup" id="grup"
+                            class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md w-full select2"
+                            required>
+                            <option value="" selected disabled> Pilih Grup</option>
+                            <option {{ $user->grup == 1 ? 'selected' : '' }} value="1">BKAD</option>
+                            <option {{ $user->grup == 1 ? 'selected' : '' }} value="2">BKPSDM</option>
+                            <option {{ $user->grup == 1 ? 'selected' : '' }} value="3">DISDIK</option>
+                            <option {{ $user->grup == 1 ? 'selected' : '' }} value="4">SKLH</option>
+                            <option {{ $user->grup == 1 ? 'selected' : '' }} value="5">DINKES</option>
+                            <option {{ $user->grup == 1 ? 'selected' : '' }} value="6">PKM</option>
                         </select>
-                    </div> --}}
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label for="skpd">SKPD</label>
+                        <select name="skpd" id="skpd"
+                            class="text-xs md:text-sm rounded-lg border border-gray-300 shadow-md w-full select2"
+                            required>
+                            <option value="" selected disabled> Pilih SKPD</option>
+                            @foreach ($skpd as $item)
+                                <option {{ $user->skpd == $item->kdskpd ? 'selected' : '' }}
+                                    value="{{ $item->kdskpd }}">{{ $item->kdskpd }} - {{ $item->uraian }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="flex md:justify-end justify-between items-center md:gap-4 gap-1">
                         <button
                             class="bg-green-500 hover:bg-opacity-80 text-white py-2 px-4 rounded-lg flex items-center gap-1 text-xs md:text-sm shadow-md"
@@ -72,3 +82,11 @@
         </x-slot>
     </x-container>
 </x-app-layout>
+<script type="module">
+    $(document).ready(function() {
+        $('.select2').select2({
+            dropdownCssClass: "text-xs md:text-sm",
+            selectionCssClass: 'text-xs md:text-sm',
+        });
+    })
+</script>

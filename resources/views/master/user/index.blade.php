@@ -54,7 +54,8 @@
                                             <p>{{ $item->grup_uraian }}</p>
                                         </td>
                                         <td>
-                                            <p>{{ $item->skpd }}</p>
+                                            <p>{{ $item->skpd_uraian ? $item->skpd . ' - ' . $item->skpd_uraian->uraian : '' }}
+                                            </p>
                                         </td>
                                         <td>
                                             <div class="flex justify-center items-center gap-3">

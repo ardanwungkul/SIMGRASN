@@ -11,7 +11,10 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = User::paginate(10);
+        $tahun = session('tahun');
+        $data = User::with(['skpd_uraian' => function ($q) use ($tahun) {
+            $q->where('tahun', $tahun);
+        }])->paginate(10);
         return view('master.user.index', compact('data'));
     }
     public function create()
@@ -24,7 +27,11 @@ class UserController extends Controller
     }
     public function edit(User $user)
     {
-        return view('master.user.edit', compact('user'));
+        $skpd = RefSkpd::select('kdskpd', 'uraian', 'tahun')
+            ->where('tahun', session('tahun'))
+            ->whereNotNull('kdskpd')
+            ->whereRaw('CHAR_LENGTH(kdskpd) > 7')->get();
+        return view('master.user.edit', compact('user', 'skpd'));
     }
     public function store(Request $request)
     {
@@ -73,9 +80,11 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->username = $request->username;
         $user->email = $request->email;
-        if ($request->has('password') && $request->password !== null) {
-            $user->password = Hash::make($request->password);
-        }
+        $user->grup = $request->grup;
+        $user->skpd = $request->skpd ?? '';
+        // if ($request->has('password') && $request->password !== null) {
+        //     $user->password = Hash::make($request->password);
+        // }
         $user->save();
         return redirect()->route('user.index')->with(['success' => 'Berhasil Mengubah User']);
     }

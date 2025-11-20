@@ -75,4 +75,8 @@ class User extends Authenticatable
             return 'Administrator';
         }
     }
+    public function skpd_uraian()
+    {
+        return $this->belongsTo(RefSkpd::class, 'skpd', 'kdskpd');
+    }
 }
